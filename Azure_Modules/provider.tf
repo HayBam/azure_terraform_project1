@@ -1,5 +1,5 @@
 provider "azurerm" {
-  subscription_id = "725ceff0-b0b6-42cb-aa98-880f156d58e7"
+  subscription_id = var.subscription_id
   features {
     resource_group {
       prevent_deletion_if_contains_resources = false
