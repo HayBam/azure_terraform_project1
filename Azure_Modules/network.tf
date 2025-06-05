@@ -16,3 +16,15 @@ resource "azurerm_subnet" "subnet-ip-address-space" {
   virtual_network_name = azurerm_virtual_network.shola-vnet.name
   address_prefixes = var.subnet-ip-address-space
 }
+
+resource "azurerm_network_interface" "main" {
+  name                = "main-nic"
+  location            = azurerm_resource_group.shola_project.location
+  resource_group_name = azurerm_resource_group.shola_project.name
+
+  ip_configuration {
+    name                          = "testconfiguration1"
+    subnet_id                     = azurerm_subnet.subnet-ip-address-space.id
+    private_ip_address_allocation = "Dynamic"
+  }
+}
