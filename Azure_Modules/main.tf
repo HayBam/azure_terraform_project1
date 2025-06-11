@@ -9,7 +9,7 @@ resource "azurerm_virtual_machine" "vm-test" {
     name = "myOsDisk"
     caching = "ReadWrite"
     create_option = "FromImage"
-    managed_disk_id = "Standard_LRS"
+    managed_disk_type = "Standard_LRS"
   }
   storage_image_reference {
     publisher = "Canonical"
