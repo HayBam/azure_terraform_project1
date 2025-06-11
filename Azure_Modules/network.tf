@@ -21,7 +21,7 @@ resource "azurerm_public_ip" "public-ip" {
   name                = "public-ip"
   location            = azurerm_resource_group.shola_project.location
   resource_group_name = azurerm_resource_group.shola_project.name
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
 }
 
 # Create Network Security Group and rule
