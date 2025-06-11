@@ -23,7 +23,7 @@ resource "azurerm_network_interface" "main" {
   resource_group_name = azurerm_resource_group.shola_project.name
 
   ip_configuration {
-    name                          = "testconfiguration1"
+    name                          = "vm-config"
     subnet_id                     = azurerm_subnet.subnet-ip-address-space.id
     private_ip_address_allocation = "Dynamic"
   }
