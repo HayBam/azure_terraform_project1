@@ -9,3 +9,9 @@ variable "vnet-ip-address-space" {
 variable "subnet-ip-address-space" {
   description = "subnet address space"
 }
+
+variable "username" {
+  type        = string
+  description = "The username for the local account that will be created on the new VM."
+  default     = "azureadmin"
+}
