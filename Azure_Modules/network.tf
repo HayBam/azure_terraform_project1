@@ -25,7 +25,7 @@ resource "azurerm_public_ip" "public-ip" {
 }
 
 resource "azurerm_route_table" "shola-route-table" {
-  name                = "acceptanceTestRouteTable1"
+  name                = "shola-route-table"
   location            = azurerm_resource_group.shola-project.location
   resource_group_name = azurerm_resource_group.shola-project.name
 }
