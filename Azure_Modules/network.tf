@@ -31,13 +31,17 @@ resource "azurerm_route_table" "shola-route-table" {
 }
 
 resource "azurerm_route" "shola-rt" {
-  name                = "acceptanceTestRoute1"
+  name                = "internet-route"
   resource_group_name = azurerm_resource_group.shola-project.name
   route_table_name    = azurerm_route_table.shola-route-table.name
   address_prefix      = "0.0.0.0/0"
   next_hop_type       = "internet"
 }
 
+resource "azurerm_subnet_route_table_association" "shola-route-table-association" {
+  subnet_id = azurerm_subnet.subnet-ip-address-space.id 
+  route_table_id = azurerm_route_table.shola-route-table.id
+}
 
 # Create Network Security Group and rule
 resource "azurerm_network_security_group" "nsg" {
