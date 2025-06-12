@@ -35,7 +35,7 @@ resource "azurerm_route" "shola-rt" {
   resource_group_name = azurerm_resource_group.shola-project.name
   route_table_name    = azurerm_route_table.shola-route-table.name
   address_prefix      = "0.0.0.0/0"
-  next_hop_type       = "internet"
+  next_hop_type       = "Internet"
 }
 
 resource "azurerm_subnet_route_table_association" "shola-route-table-association" {
