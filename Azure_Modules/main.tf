@@ -1,7 +1,7 @@
 resource "azurerm_virtual_machine" "vm-test" {
   name = "vm-test"
-  location = azurerm_resource_group.shola_project.location
-  resource_group_name = azurerm_resource_group.shola_project.name
+  location = azurerm_resource_group.shola-project.location
+  resource_group_name = azurerm_resource_group.shola-project.name
   network_interface_ids = [azurerm_network_interface.main.id]
   vm_size = "Standard_A1_v2"
 
