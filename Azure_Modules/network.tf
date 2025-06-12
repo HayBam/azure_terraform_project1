@@ -1,34 +1,49 @@
-resource "azurerm_resource_group" "shola_project" {
-  name = "shola_project"
+resource "azurerm_resource_group" "shola-project" {
+  name = "shola-project"
   location = "Canada Central"
 }
 
 resource "azurerm_virtual_network" "shola-vnet"{
     name = "shola-vnet"
     address_space = var.vnet-ip-address-space
-    location = azurerm_resource_group.shola_project.location
-    resource_group_name = azurerm_resource_group.shola_project.name
+    location = azurerm_resource_group.shola-project.location
+    resource_group_name = azurerm_resource_group.shola-project.name
 }
 
 resource "azurerm_subnet" "subnet-ip-address-space" {
   name = "subnet-ip-address-space"
-  resource_group_name = azurerm_resource_group.shola_project.name
+  resource_group_name = azurerm_resource_group.shola-project.name
   virtual_network_name = azurerm_virtual_network.shola-vnet.name
   address_prefixes = var.subnet-ip-address-space
 }
 
 resource "azurerm_public_ip" "public-ip" {
   name                = "public-ip"
-  location            = azurerm_resource_group.shola_project.location
-  resource_group_name = azurerm_resource_group.shola_project.name
+  location            = azurerm_resource_group.shola-project.location
+  resource_group_name = azurerm_resource_group.shola-project.name
   allocation_method   = "Static"
 }
+
+resource "azurerm_route_table" "shola-route-table" {
+  name                = "acceptanceTestRouteTable1"
+  location            = azurerm_resource_group.shola-project.location
+  resource_group_name = azurerm_resource_group.shola-project.name
+}
+
+resource "azurerm_route" "shola-rt" {
+  name                = "acceptanceTestRoute1"
+  resource_group_name = azurerm_resource_group.shola-project.name
+  route_table_name    = azurerm_route_table.shola-route-table.name
+  address_prefix      = "0.0.0.0/0"
+  next_hop_type       = "internet"
+}
+
 
 # Create Network Security Group and rule
 resource "azurerm_network_security_group" "nsg" {
   name                = "nsg"
-  location            = azurerm_resource_group.shola_project.location
-  resource_group_name = azurerm_resource_group.shola_project.name
+  location            = azurerm_resource_group.shola-project.location
+  resource_group_name = azurerm_resource_group.shola-project.name
 
   security_rule {
     name                       = "SSH"
@@ -46,8 +61,8 @@ resource "azurerm_network_security_group" "nsg" {
 
 resource "azurerm_network_interface" "main" {
   name                = "main-nic"
-  location            = azurerm_resource_group.shola_project.location
-  resource_group_name = azurerm_resource_group.shola_project.name
+  location            = azurerm_resource_group.shola-project.location
+  resource_group_name = azurerm_resource_group.shola-project.name
 
   ip_configuration {
     name                          = "main-nic-config"
