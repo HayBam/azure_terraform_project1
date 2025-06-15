@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "shola-project" {
-  name = "shola-project"
-  location = "Canada Central"
+  name = var.resource_group_name
+  location = var.location
 }
 
 resource "azurerm_virtual_network" "shola-vnet"{
