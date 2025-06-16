@@ -19,7 +19,7 @@ resource "azurerm_virtual_machine" "vm-test" {
   }
 
   os_profile {
-    computer_name  = "hostname"
+    computer_name  = "shola-ubuntu-vm"
     admin_username = var.admin_username
     admin_password = var.admin_password
   }
@@ -28,7 +28,7 @@ resource "azurerm_virtual_machine" "vm-test" {
     disable_password_authentication = true
 
     ssh_keys {
-      path     = "/home/azureuser/.ssh/authorized_keys"
+      path     = "/home/azureadmin/.ssh/authorized_keys"
       key_data = tls_private_key.ssh_key.public_key_openssh
     }
   }
