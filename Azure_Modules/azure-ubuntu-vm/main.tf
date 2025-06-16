@@ -23,10 +23,16 @@ resource "azurerm_virtual_machine" "vm-test" {
     admin_username = var.admin_username
     admin_password = var.admin_password
   }
+
   os_profile_linux_config {
-    disable_password_authentication = false
+    disable_password_authentication = true
+
+    ssh_keys {
+      path     = "/home/azureuser/.ssh/authorized_keys"
+      key_data = tls_private_key.ssh_key.public_key_openssh
+    }
   }
   tags = {
-    environment = "staging"
+    environment = "shola-vm-test"
   }
 }
