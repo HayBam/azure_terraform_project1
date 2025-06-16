@@ -1,6 +1,6 @@
 output "vm_public_ip" {
   description = "Public IP of the Ubuntu VM"
-  value = azurerm_public_ip.public-ip.id
+  value = azurerm_public_ip.public-ip.ip_address
 }
 
 output "username" {
