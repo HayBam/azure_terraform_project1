@@ -3,7 +3,7 @@ output "vm_public_ip" {
   value = azurerm_public_ip.public-ip.ip_address
 }
 
-output "username" {
-  description = "Username of the vm"
-  value = var.admin_username
+output "private_key_path" {
+  description = "Private key information"
+  value = local_file.private_key_pem.filename
 }
