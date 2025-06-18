@@ -41,7 +41,7 @@ module "ubuntu_vm" {
   vnet_ip_address_space   = #["x.X.X.X/X"]
   subnet_ip_address_space = #["x.X.X.X/X"]
 
-### 2. Connect to the created VM
+### Connect to the created VM
 connect to the created vm using the below command
 
 ssh -i azure-ubuntu-vm/id_rsa azureadmin@<public_ip>
